@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - DeepFake Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .logout {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="history.html">History</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Our Mission</h2>
+        <p>We are committed to providing cutting-edge solutions for detecting deepfake content. Our system utilizes advanced machine learning models and computer vision techniques to analyze and identify manipulated media.</p>
+        
+        <h2>Our Team</h2>
+        <p>Our team consists of experienced professionals in the fields of artificial intelligence, computer vision, and software development. We are dedicated to making online media safer and more trustworthy.</p>
+        
+        <h2>Contact Us</h2>
+        <p>If you have any questions or feedback, feel free to <a href="mailto:support@example.com">contact us</a>.</p>
+
+        <div class="logout">
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - DeepFake Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .logout {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prediction History</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="history.html">History</a>
+            <a href="about.html">About Us</a>
+        </nav>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Image</th>
+                    <th>Prediction</th>
+                    <th>Real Percentage</th>
+                    <th>Fake Percentage</th>
+                </tr>
+            </thead>
+            <tbody id="historyTable">
+                <!-- History entries will be populated here by JavaScript -->
+            </tbody>
+        </table>
+        <div class="logout">
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/history');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const history = await response.json();
+                const historyTable = document.getElementById('historyTable');
+
+                history.forEach(entry => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${entry.date}</td>
+                        <td><img src="${entry.image_url}" alt="Image" style="max-width: 100px;"></td>
+                        <td>${entry.prediction}</td>
+                        <td>${entry.real_percentage}%</td>
+                        <td>${entry.fake_percentage}%</td>
+                    `;
+                    historyTable.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
